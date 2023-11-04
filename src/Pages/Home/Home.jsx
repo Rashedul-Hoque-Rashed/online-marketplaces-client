@@ -1,7 +1,7 @@
 
 const Home = () => {
     return (
-        <div>
+        <div className="h-screen">
             <p>hello</p> 
         </div>
     );
