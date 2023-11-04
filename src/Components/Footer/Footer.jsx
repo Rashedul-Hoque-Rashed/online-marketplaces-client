@@ -5,8 +5,8 @@ import { MdEmail } from 'react-icons/md';
 const Footer = () => {
     return (
         <div className="bg-[#1F4B3F] ">
-            <footer className="footer  text-white container mx-auto px-6 py-24">
-                <nav className="flex flex-col items-center my-auto">
+            <footer className="footer text-white container mx-auto px-6 py-24">
+                <nav className="flex flex-col items-center my-auto mx-auto md:mr-10 lg:mr-24">
                     <img src={logo} alt="" className="mb-4" />
                     <div className="flex items-center gap-4">
                         <BsFacebook className="w-8 h-8" />

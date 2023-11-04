@@ -28,7 +28,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar bg-base-100 container mx-auto px-6 py-4">
+        <div className="navbar bg-base-100 container mx-auto px-2 md:px-6 py-4">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -40,7 +40,7 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <NavLink to="/"><img className="w-36 h-10" src={logo} alt="" /></NavLink>
+                <NavLink to="/"><img className="w-28 h-8 md:w-36 md:h-10" src={logo} alt="" /></NavLink>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu-horizontal items-center gap-6 px-1">
@@ -50,7 +50,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <NavLink className="btn bg-[#1F4B3F] text-white normal-case px-6 hover:bg-[#0c3b2f]">Login</NavLink>
+                <NavLink className="btn bg-[#1F4B3F] text-white normal-case md:text-base md:font-semibold md:px-6 hover:bg-[#0c3b2f]">Login</NavLink>
             </div>
         </div>
     );
