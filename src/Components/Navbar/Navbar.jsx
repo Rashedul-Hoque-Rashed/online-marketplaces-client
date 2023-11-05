@@ -50,7 +50,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <NavLink className="btn bg-[#1F4B3F] text-white normal-case md:text-base md:font-semibold md:px-6 hover:bg-[#0c3b2f]">Login</NavLink>
+                <NavLink to="/login" className="btn bg-[#1F4B3F] text-white normal-case md:text-base md:font-semibold md:px-6 hover:bg-[#0c3b2f]">Login</NavLink>
             </div>
         </div>
     );
