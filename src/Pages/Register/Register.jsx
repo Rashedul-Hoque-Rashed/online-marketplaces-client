@@ -1,9 +1,14 @@
 import { NavLink } from "react-router-dom";
 import login from "../../assets/Images/login.avif"
+import { Helmet } from "react-helmet";
 
 const Register = () => {
     return (
         <div className="hero container mx-auto px-2 md:px-6 py-10 md:py-24">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Freeio | Register</title>
+            </Helmet>
             <div className="hero-content flex-col md:flex-row-reverse">
                 <div className="text-center flex-1 lg:text-left">
                     <img src={login} alt="" />
