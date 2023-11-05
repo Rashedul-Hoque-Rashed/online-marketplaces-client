@@ -9,7 +9,7 @@ const Trusted = () => {
     return (
         <div className="bg-[#1F4B3F] py-10 rounded-t-2xl mx-4 ">
             <p className="text-sm font-medium text-white text-center mb-8">Trusted by the world’s best</p>
-            <div className="container mx-auto px-20 flex items-center justify-between">
+            <div className="container mx-auto px-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
                 <img src={icon1} alt="" className="" />
                 <img src={icon2} alt="" className="" />
                 <img src={icon3} alt="" className="" />
