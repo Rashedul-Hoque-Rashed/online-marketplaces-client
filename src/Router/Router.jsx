@@ -5,6 +5,7 @@ import Error from "../Pages/Error/Error";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import AddJobs from "../Pages/AddJobs/AddJobs";
+import PrivateRouter from "./PrivateRouter";
 
 
 export const router = createBrowserRouter([
@@ -27,7 +28,7 @@ export const router = createBrowserRouter([
         },
         {
           path: "/add-jobs",
-          element: <AddJobs/>
+          element: <PrivateRouter><AddJobs/></PrivateRouter>
         }
       ]
     },
