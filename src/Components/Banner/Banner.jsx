@@ -1,9 +1,13 @@
 import img from "../../assets/Images/banner.png"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init();
 
 const Banner = () => {
     return (
         <div className="container mx-auto px-2 md:px-6 py-8 md:py-16 lg:py-24 flex flex-col-reverse md:flex-row items-center gap-10">
-            <div className="flex-1">
+            <div data-aos="zoom-in-up" data-aos-duration="3000" className="flex-1">
                 <h2 className="text-xl lg:text-4xl text-[#1F4B3F] font-bold mb-8">More than 10K expert <br /> freelancers are waiting for you</h2>
                 <div className="flex items-center justify-between gap-6">
                     <div>
@@ -24,7 +28,7 @@ const Banner = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex-1">
+            <div data-aos="zoom-in-down" data-aos-duration="3000" className="flex-1">
                 <img src={img} alt="" className=""/>
             </div>
         </div>
