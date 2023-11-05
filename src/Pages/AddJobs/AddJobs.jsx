@@ -1,7 +1,12 @@
+import { Helmet } from "react-helmet";
 
 const AddJobs = () => {
     return (
         <div className="container mx-auto px-2 md:px-6 py-4">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Freeio | Add Jobs</title>
+            </Helmet>
   <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
       <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">Add a new job</h2>
       <form action="#">
