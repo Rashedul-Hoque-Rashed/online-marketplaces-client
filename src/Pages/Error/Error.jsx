@@ -7,7 +7,6 @@ const Error = () => {
     return (
         <div className="container mx-auto px-2 md:px-6 py-6 md:py-36 flex flex-col md:flex-row justify-center gap-6 md:gap-32 items-center">
             <Helmet>
-                <meta charSet="utf-8" />
                 <title>Freeio | Error</title>
             </Helmet>
             <div className="flex-1 flex justify-center">

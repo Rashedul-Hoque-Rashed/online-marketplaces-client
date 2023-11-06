@@ -9,6 +9,7 @@ import PrivateRouter from "./PrivateRouter";
 import PostedJobs from "../Pages/PostedJobs/PostedJobs";
 import MyBids from "../Pages/MyBids/MyBids";
 import BidRequests from "../Pages/BidRequests/BidRequests";
+import JobDetails from "../Pages/JobDetails/JobDetails";
 
 
 export const router = createBrowserRouter([
@@ -44,6 +45,11 @@ export const router = createBrowserRouter([
         {
           path: "/bid-requests",
           element: <PrivateRouter><BidRequests/></PrivateRouter>
+        },
+        {
+          path: "/jobs/:id",
+          element: <PrivateRouter><JobDetails/></PrivateRouter>,
+          loader: ({params}) => fetch(`http://localhost:5000/api/v1/jobs/${params.id}`)
         }
       ]
     },

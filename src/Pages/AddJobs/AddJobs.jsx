@@ -48,12 +48,11 @@ const AddJobs = () => {
     return (
         <div className="container mx-auto px-2 md:px-6 py-4">
             <Helmet>
-                <meta charSet="utf-8" />
                 <title>Freeio | Add Jobs</title>
             </Helmet>
             <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
                 <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">Add a new job</h2>
-                <form onSubmit={handelAddJobs} action="#">
+                <form onSubmit={handelAddJobs}>
                     <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                         <div className="">
                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
@@ -86,11 +85,11 @@ const AddJobs = () => {
                         </div>
                         <div className="sm:col-span-2">
                             <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                            <textarea id="description" name="description" rows="8" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your description here"></textarea>
+                            <textarea id="description" name="description" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your description here"></textarea>
                         </div>
                     </div>
                     <button type="submit" className="btn normal-case w-full bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] mt-8">
-                        Add product
+                        Add Jobs
                     </button>
                 </form>
             </div>

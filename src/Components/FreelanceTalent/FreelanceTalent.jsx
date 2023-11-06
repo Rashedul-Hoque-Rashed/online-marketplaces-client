@@ -10,10 +10,10 @@ AOS.init();
 const FreelanceTalent = () => {
     return (
         <div className="container mx-auto px-2 md:px-6 pb-24 flex flex-col md:flex-row justify-center gap-32 items-center">
-            <div data-aos="zoom-in-up" data-aos-duration="3000" className="flex-1 flex justify-center">
+            <div data-aos="zoom-in-down" data-aos-duration="3000" className="flex-1 flex justify-center">
                 <img src={img} alt="" className="h-80 lg:h-96 " />
             </div>
-            <div data-aos="zoom-in-down" data-aos-duration="3000" className="flex-1">
+            <div data-aos="zoom-in-up" data-aos-duration="3000" className="flex-1">
                 <h2 className="text-2xl lg:text-4xl font-bold mb-8">A whole world of freelance <br /> talent at your fingertips</h2>
                 <div className="flex items-center gap-3 mb-6">
                     <img src={icon1} alt="" />
