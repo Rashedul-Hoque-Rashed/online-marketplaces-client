@@ -5,6 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import { Comment } from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const PostedJobs = () => {
@@ -16,7 +17,7 @@ const PostedJobs = () => {
         return res;
     }
 
-    const { data: jobs, isLoading, isError, error } = useQuery({
+    const { data: jobs, isLoading, isError, error, refetch } = useQuery({
         queryKey: ['jobs'],
         queryFn: getJobs
     })
@@ -42,6 +43,34 @@ const PostedJobs = () => {
         return <div>something went wrong: {error}</div>
     }
 
+    const handelDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`/jobs/${id}`)
+                    .then(res => {
+                        if (res.data?.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                            refetch();
+                        }
+                    })
+                    .catch(err => console.error(err))
+                
+            }
+        });
+    }
+
     return (
         <div className="container mx-auto px-2 md:px-6 py-10 md:py-16 lg:py-24">
             <Helmet>
@@ -61,7 +90,7 @@ const PostedJobs = () => {
                                             <Link to={`/updateJobs/${job._id}`} className="flex-1 btn normal-case w-full bg-[#1F4B3F] text-white hover:bg-[#0c3b2f]">
                                                 Update
                                             </Link>
-                                            <button className="flex-1 btn normal-case w-full bg-red-600 text-white hover:bg-red-700">
+                                            <button onClick={() => handelDelete(job._id)} className="flex-1 btn normal-case w-full bg-red-600 text-white hover:bg-red-700">
                                                 Delete
                                             </button>
                                         </div>
