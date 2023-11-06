@@ -23,7 +23,7 @@ const AddJobs = () => {
         const maximumPrice = form.maximumPrice.value;
         const description = form.description.value;
 
-        const newJobs = { employerEmail: email, jobTitle: title, deadline, category, minimumPrice, maximumPrice, description };
+        const newJobs = { buyerEmail: email, jobTitle: title, deadline, category, minimumPrice, maximumPrice, description };
 
         axios.post('/jobs', newJobs)
             .then(res => {

@@ -1,19 +1,51 @@
 import { useContext } from "react";
 import { Helmet } from "react-helmet";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import useAxios from "../../Hooks/useAxios";
+import Swal from "sweetalert2";
 
 
 const JobDetails = () => {
 
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const job = useLoaderData();
+    const { jobTitle, category } = job;
+    const axios = useAxios();
+    const Navigate = useNavigate();
+
+    const handelBid = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const buyerEmail = form.buyerEmail.value;
+        const deadline = form.deadline.value;
+        const price = form.price.value;
+
+        const bids = { sellerEmail: email, buyerEmail, jobTitle, category, deadline, price, status: "pending" };
+
+        axios.post("/bids", bids)
+            .then(res => {
+                console.log(res.data)
+                if (res.data?.insertedId) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Bid this job successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    Navigate('/bids');
+                }
+            })
+            .catch(err => console.error(err))
+    }
 
 
     return (
         <div className="container mx-auto px-2 md:px-6 py-4">
             <Helmet>
-                <title>Freeio | Job Details</title>
+                <title>Freeio | Bid Jobs</title>
             </Helmet>
             <div className="my-6">
                 <h2 className="text-2xl font-bold mb-6">{job.jobTitle}</h2>
@@ -25,7 +57,7 @@ const JobDetails = () => {
             </div>
             <div className="py-6 px-4 mx-auto max-w-2xl">
                 <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">Place your bid</h2>
-                <form>
+                <form onSubmit={handelBid}>
                     <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                         <div className="">
                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
@@ -33,20 +65,20 @@ const JobDetails = () => {
                         </div>
                         <div className="">
                             <label htmlFor="buyerEmail" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Buyer Email</label>
-                            <input type="email" name="buyerEmail" id="buyerEmail" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" defaultValue={job?.employerEmail} placeholder="" required readOnly />
+                            <input type="email" name="buyerEmail" id="buyerEmail" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" defaultValue={job?.buyerEmail} placeholder="" required readOnly />
                         </div>
                         <div className="w-full">
                             <label htmlFor="deadline" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deadline</label>
                             <input type="date" name="deadline" id="deadline" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required />
                         </div>
-                        
+
                         <div>
                             <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
                             <input type="text" name="price" id="price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your Bidding Price" required />
                         </div>
                     </div>
-                    <button type="submit" className={user?.email === job.employerEmail ? "btn normal-case w-full bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] mt-8 btn-disabled" : "btn normal-case w-full bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] mt-8"}>
-                        Bid The Project
+                    <button type="submit" className={user?.email === job.buyerEmail ? "btn normal-case w-full bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] mt-8 btn-disabled" : "btn normal-case w-full bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] mt-8"}>
+                        Bid The Job
                     </button>
                 </form>
             </div>
