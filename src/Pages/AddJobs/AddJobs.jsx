@@ -13,15 +13,15 @@ const AddJobs = () => {
 
     const handelAddJobs = e => {
         e.preventDefault();
-        const from = e.target;
+        const form = e.target;
 
-        const email = from.email.value;
-        const title = from.title.value;
-        const deadline = from.deadline.value;
-        const category = from.category.value;
-        const minimumPrice = from.minimumPrice.value;
-        const maximumPrice = from.maximumPrice.value;
-        const description = from.description.value;
+        const email = form.email.value;
+        const title = form.title.value;
+        const deadline = form.deadline.value;
+        const category = form.category.value;
+        const minimumPrice = form.minimumPrice.value;
+        const maximumPrice = form.maximumPrice.value;
+        const description = form.description.value;
 
         const newJobs = { employerEmail: email, jobTitle: title, deadline, category, minimumPrice, maximumPrice, description };
 
