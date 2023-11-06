@@ -4,7 +4,6 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged,
 import auth from "../../Firebase/Firebase.config";
 
 
-
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {

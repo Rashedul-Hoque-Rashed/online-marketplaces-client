@@ -47,30 +47,35 @@ const MyBids = () => {
             <Helmet>
                 <title>Freeio | My Bids</title>
             </Helmet>
-            <div className="overflow-x-auto">
-                <table className="table table-zebra">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Job title</th>
-                            <th>Email</th>
-                            <th>Deadline</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            bids.data?.map((bid, index) => <tr key={bid._id}>
-                                <th>{index+1}</th>
-                                <td>{bid.jobTitle}</td>
-                                <td>{bid.sellerEmail}</td>
-                                <td>{bid.deadline}</td>
-                                <td>{bid.status}
-                                <button className={bid.status === " in progress" ? "btn normal-case bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] ml-4" : "hidden"}>Complete</button></td>
-                            </tr>)
-                        }
-                    </tbody>
-                </table>
+            <div>
+                {
+                    bids.data?.length === 0 ? <p className="text-4xl font-bold text-center my-24 md:my-32 lg:my-52">You did not bid at any jobs.</p> :
+                        <div className="overflow-x-auto">
+                            <table className="table table-zebra">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Job title</th>
+                                        <th>Email</th>
+                                        <th>Deadline</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        bids.data?.map((bid, index) => <tr key={bid._id}>
+                                            <th>{index + 1}</th>
+                                            <td>{bid.jobTitle}</td>
+                                            <td>{bid.buyerEmail}</td>
+                                            <td>{bid.deadline}</td>
+                                            <td>{bid.status}
+                                                <button className={bid.status === "in progress" ? "btn normal-case bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] ml-4" : "hidden"}>Complete</button></td>
+                                        </tr>)
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                }
             </div>
         </div>
     );

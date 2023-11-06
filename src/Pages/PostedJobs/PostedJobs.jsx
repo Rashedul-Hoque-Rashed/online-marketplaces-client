@@ -72,7 +72,7 @@ const PostedJobs = () => {
     }
 
     return (
-        <div className="container mx-auto px-2 md:px-6 py-10 md:py-16 lg:py-24">
+        <div className="container mx-auto px-2 md:px-6 py-10 md:py-16 lg:py-24 min-h-[700px]">
             <Helmet>
                 <title>Freeio | My Posted Jobs</title>
             </Helmet>

@@ -47,7 +47,7 @@ const UpdateJobs = () => {
     }
 
     return (
-        <div className="container mx-auto px-2 md:px-6 py-4">
+        <div className="container mx-auto px-2 md:px-6 py-4 min-h-[700px]">
             <Helmet>
                 <title>Freeio | Update Jobs</title>
             </Helmet>
