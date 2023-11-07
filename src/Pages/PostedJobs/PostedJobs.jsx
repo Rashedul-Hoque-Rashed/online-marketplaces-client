@@ -2,10 +2,10 @@ import { Helmet } from "react-helmet";
 import useAxios from "../../Hooks/useAxios";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
-import { useQuery } from "@tanstack/react-query";
 import { Comment } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
 
 
 const PostedJobs = () => {
@@ -42,6 +42,7 @@ const PostedJobs = () => {
     if (isError) {
         return <div>something went wrong: {error}</div>
     }
+
 
     const handelDelete = (id) => {
         Swal.fire({
