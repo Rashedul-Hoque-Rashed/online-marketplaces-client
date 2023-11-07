@@ -4,20 +4,22 @@ import { Comment } from "react-loader-spinner";
 import useAxios from "../../Hooks/useAxios";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import { useState } from "react";
 
 
 
 const MyBids = () => {
     const { user } = useContext(AuthContext);
     const axios = useAxios();
+    const [status, setStatus] = useState('');
 
     const getBids = async () => {
-        const res = await axios.get(`/bids?email=${user.email}`)
+        const res = await axios.get(`/bids?email=${user.email}&sortField=status&sortOrder=${status}`)
         return res;
     }
 
     const { data: bids, isLoading, isError, error, refetch } = useQuery({
-        queryKey: ['bids'],
+        queryKey: ['bids', status],
         queryFn: getBids
     })
 
@@ -63,10 +65,10 @@ const MyBids = () => {
                         <h4 className="text-2xl font-bold mb-6">The jobs you bid on</h4>
                         <div>
                             <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sort by status</label>
-                            <select id="category" name="category" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-1">
-                                <option>Select one</option>
-                                <option value="web-development">Ascending</option>
-                                <option value="digital-marketing">Descending</option>
+                            <select onChange={(e)=>setStatus(e.target.value)} id="category" name="category" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-1">
+                                <option aria-readonly>Select one</option>
+                                <option value="asc">a - z</option>
+                                <option value="desc">z - a</option>
                             </select>
                         </div>
                     </div>

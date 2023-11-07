@@ -94,7 +94,7 @@ const Login = () => {
                         </div>
                         <button type="submit" className="btn normal-case w-full bg-[#1F4B3F] text-white hover:bg-[#0c3b2f]">Login</button>
                         <p className="text-center my-4">or</p>
-                        <button onClick={handelGoogle} type="submit" className="btn normal-case w-full text-black"> <FcGoogle className="w-6 h-6"/> Login with Google</button>
+                        <button onClick={handelGoogle} className="btn normal-case w-full text-black"> <FcGoogle className="w-6 h-6"/> Login with Google</button>
                         <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                             Don’t have an account yet? <NavLink to="/register" href="#" className="font-medium text-[#1F4B3F] hover:underline">Register</NavLink>
                         </p>
