@@ -4,6 +4,8 @@ import useAxios from "../../Hooks/useAxios";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
+import "react-step-progress-bar/styles.css";
+import { ProgressBar } from "react-step-progress-bar";
 
 
 const BidRequests = () => {
@@ -48,14 +50,16 @@ const BidRequests = () => {
                 console.log(res)
                 refetch()
             })
+            .catch(err => console.error(err))
     }
 
     const handelReject = (id) => {
         axios.put(`/bids-request/${id}`, { status: "cancel" })
-        .then(res => {
-            console.log(res)
-            refetch()
-        })
+            .then(res => {
+                console.log(res)
+                refetch()
+            })
+            .catch(err => console.error(err))
     }
 
     return (
@@ -63,6 +67,10 @@ const BidRequests = () => {
             <Helmet>
                 <title>Freeio | Bid Requests</title>
             </Helmet>
+                {
+                    bidsRequest.data?.length > 0 &&
+                    <h4 className="text-2xl font-bold mb-6">You have received some bid requests</h4>
+                }
             <div>
                 {
                     bidsRequest.data?.length === 0 ? <p className="text-4xl font-bold text-center my-24 md:my-32 lg:my-52">You have not any bid request.</p> :
@@ -91,6 +99,12 @@ const BidRequests = () => {
                                             <td>
                                                 <button onClick={() => handelAccept(bidRequest._id)} className={bidRequest.status === "pending" ? "btn normal-case bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] ml-4" : "hidden"}>Accept</button>
                                                 <button onClick={() => handelReject(bidRequest._id)} className={bidRequest.status === "pending" ? "btn normal-case bg-red-600 text-white hover:bg-red-700 ml-4" : "hidden"}>Reject</button>
+                                                {
+                                                    (bidRequest.status === "in progress" || bidRequest.status === "complete") && <ProgressBar
+                                                        percent={(bidRequest.status === "in progress" ? 50 : 100)}
+                                                        filledBackground="linear-gradient(to right, #43927e, #1F4B3F)"
+                                                    />
+                                                }
                                             </td>
                                         </tr>)
                                     }

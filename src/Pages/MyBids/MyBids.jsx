@@ -16,7 +16,7 @@ const MyBids = () => {
         return res;
     }
 
-    const { data: bids, isLoading, isError, error } = useQuery({
+    const { data: bids, isLoading, isError, error, refetch } = useQuery({
         queryKey: ['bids'],
         queryFn: getBids
     })
@@ -42,11 +42,36 @@ const MyBids = () => {
         return <div>something went wrong: {error}</div>
     }
 
+    const handelComplete = (id) => {
+        axios.put(`/bids-request/${id}`, { status: "complete" })
+            .then(res => {
+                console.log(res)
+                refetch()
+            })
+            .catch(err => console.error(err))
+    }
+
     return (
         <div className="container mx-auto px-2 md:px-6 py-10 min-h-[700px]">
             <Helmet>
                 <title>Freeio | My Bids</title>
             </Helmet>
+            <div>
+                {
+                    bids.data?.length > 0 &&
+                    <div className="flex flex-col md:flex-row items-center justify-between">
+                        <h4 className="text-2xl font-bold mb-6">The jobs you bid on</h4>
+                        <div>
+                            <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sort by status</label>
+                            <select id="category" name="category" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-1">
+                                <option>Select one</option>
+                                <option value="web-development">Ascending</option>
+                                <option value="digital-marketing">Descending</option>
+                            </select>
+                        </div>
+                    </div>
+                }
+            </div>
             <div>
                 {
                     bids.data?.length === 0 ? <p className="text-4xl font-bold text-center my-24 md:my-32 lg:my-52">You did not bid at any jobs.</p> :
@@ -69,7 +94,7 @@ const MyBids = () => {
                                             <td>{bid.buyerEmail}</td>
                                             <td>{bid.deadline}</td>
                                             <td>{bid.status}
-                                                <button className={bid.status === "in progress" ? "btn normal-case bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] ml-4" : "hidden"}>Complete</button></td>
+                                                <button onClick={() => handelComplete(bid._id)} className={bid.status === "in progress" ? "btn normal-case bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] ml-4" : "hidden"}>Complete</button></td>
                                         </tr>)
                                     }
                                 </tbody>
