@@ -101,6 +101,7 @@ const BidRequests = () => {
                                                 <button onClick={() => handelReject(bidRequest._id)} className={bidRequest.status === "pending" ? "btn normal-case bg-red-600 text-white hover:bg-red-700 ml-4" : "hidden"}>Reject</button>
                                                 {
                                                     (bidRequest.status === "in progress" || bidRequest.status === "complete") && <ProgressBar
+                                                    width={"150px"}
                                                         percent={(bidRequest.status === "in progress" ? 50 : 100)}
                                                         filledBackground="linear-gradient(to right, #43927e, #1F4B3F)"
                                                     />
