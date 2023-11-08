@@ -13,7 +13,11 @@ const JobDetails = () => {
     const { jobTitle, category } = job;
     const axios = useAxios();
     const Navigate = useNavigate();
-    console.log(user.email, job.buyerEmail)
+
+    const currentTime = Date.now();
+    const date = new Date(job.deadline)
+    const deadline =  date.getTime();
+    // console.log(currentTime, date, deadline);
 
     const handelBid = (e) => {
         e.preventDefault();
@@ -53,7 +57,13 @@ const JobDetails = () => {
                 <p className="text-lg font-medium mb-3">{job.description}</p>
                 <div className="flex flex-col md:flex-row justify-start md:gap-6">
                     <p className="text-lg font-medium">Price Range: <span className="text-gray-600">{job.minimumPrice}$-{job.maximumPrice}$</span></p>
-                    <p className="text-lg font-medium">Deadline: <span className="text-gray-600">{job.deadline}</span></p>
+                    <p className="text-lg font-medium">Deadline: <span className="text-gray-600">{job.deadline}</span>
+                    <span className="text-red-600">
+                        {
+                            deadline < currentTime && <>(Deadline is over)</>
+                        }
+                    </span>
+                    </p>
                 </div>
             </div>
             <div className="py-6 px-4 mx-auto max-w-2xl">
@@ -78,7 +88,7 @@ const JobDetails = () => {
                             <input type="text" name="price" id="price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Your Bidding Price" required />
                         </div>
                     </div>
-                    <button type="submit" className={user?.email === job.buyerEmail ? "btn normal-case w-full bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] mt-8 btn-disabled" : "btn normal-case w-full bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] mt-8"}>
+                    <button type="submit" className={user?.email === job.buyerEmail || deadline < currentTime ? "btn normal-case w-full bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] mt-8 btn-disabled" : "btn normal-case w-full bg-[#1F4B3F] text-white hover:bg-[#0c3b2f] mt-8"}>
                         Bid The Job
                     </button>
                 </form>
