@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
-import { Comment } from "react-loader-spinner";
 import useAxios from "../../Hooks/useAxios";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { useState } from "react";
+import Lottie from "lottie-react";
+import loading from "../../../public/loading.json"
 
 
 
@@ -25,18 +26,9 @@ const MyBids = () => {
 
     if (isLoading) {
         return (
-            <div className="w-20 my-72 mx-auto">
-                <Comment
-                    visible={true}
-                    height="80"
-                    width="80"
-                    ariaLabel="comment-loading"
-                    wrapperStyle={{}}
-                    wrapperClass="comment-wrapper"
-                    color="#fff"
-                    backgroundColor="#1F4B3F"
-                />
-            </div>
+            <div className="my-40 flex justify-center">
+        <Lottie animationData={loading} className="h-96 w-96"/>
+    </div>
         )
     }
 

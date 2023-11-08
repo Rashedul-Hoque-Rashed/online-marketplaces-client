@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider/AuthProvider";
 import { Navigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types"
-import { Comment } from 'react-loader-spinner'
+import Lottie from "lottie-react";
+import loading from "../../public/loading.json"
 
 
 const PrivateRouter = ({ children }) => {
@@ -12,17 +13,8 @@ const PrivateRouter = ({ children }) => {
 
     if (isLoading) {
         return (
-            <div className="w-20 my-72 mx-auto">
-                <Comment
-                    visible={true}
-                    height="80"
-                    width="80"
-                    ariaLabel="comment-loading"
-                    wrapperStyle={{}}
-                    wrapperClass="comment-wrapper"
-                    color="#fff"
-                    backgroundColor="#1F4B3F"
-                />
+            <div className="my-40 flex justify-center">
+                <Lottie animationData={loading} className="h-96 w-96"/>
             </div>
         )
     }
