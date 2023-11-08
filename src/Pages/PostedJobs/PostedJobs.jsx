@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import Lottie from "lottie-react";
 import loading from "../../../public/loading.json"
 
@@ -18,10 +18,20 @@ const PostedJobs = () => {
         return res;
     }
 
+    const deleteJob = async (id) => {
+        const res = await axios.delete(`/jobs/${id}`);
+        return res;
+    };
+
     const { data: jobs, isLoading, isError, error, refetch } = useQuery({
         queryKey: ['jobs'],
         queryFn: getJobs
     })
+
+    const { mutate } = useMutation({
+        mutationKey: ['deleteJob'],
+        mutationFn: deleteJob
+    });
 
     if (isLoading) {
         return (
@@ -47,9 +57,9 @@ const PostedJobs = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`/jobs/${id}`)
-                    .then(res => {
-                        if (res.data?.deletedCount > 0) {
+                mutate(id, {
+                    onSuccess: (data) => {
+                        if (data.data?.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",
@@ -57,9 +67,11 @@ const PostedJobs = () => {
                             });
                             refetch();
                         }
-                    })
-                    .catch(err => console.error(err))
-
+                    },
+                    onError: (error) => {
+                        console.error(error);
+                    }
+                });
             }
         });
     }
