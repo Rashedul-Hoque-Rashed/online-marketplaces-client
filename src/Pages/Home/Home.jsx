@@ -5,6 +5,8 @@ import FreelanceTalent from "../../Components/FreelanceTalent/FreelanceTalent";
 import Jobs from "../../Components/Jobs/Jobs";
 import SomethingDone from "../../Components/SomethingDone/SomethingDone";
 import Trusted from './../../Components/Trusted/Trusted';
+import HighestRatedFreelancers from "../../Components/HighestRatedFreelancers/HighestRatedFreelancers";
+import FindTalent from "../../Components/FindTalent/FindTalent";
 
 const Home = () => {
     return (
@@ -17,6 +19,8 @@ const Home = () => {
             <Jobs/>
             <SomethingDone/>
             <FreelanceTalent/>
+            <HighestRatedFreelancers/>
+            <FindTalent/>
             <DownloadApp/>
         </div>
     );

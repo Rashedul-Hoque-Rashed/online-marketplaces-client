@@ -28,7 +28,8 @@
     "react-step-progress-bar": "^1.0.3",
     "react-tabs": "^6.0.2",
     "sort-by": "^1.2.0",
-    "sweetalert2": "^11.9.0"
+    "sweetalert2": "^11.9.0",
+    "swiper": "^11.0.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

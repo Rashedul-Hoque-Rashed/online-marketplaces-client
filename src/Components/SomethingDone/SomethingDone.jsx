@@ -21,8 +21,8 @@ const SomethingDone = () => {
                     >
                         <img src={icon1} alt="" className="w-16 h-16 mb-2" />
                     </motion.div>
-                    <h4 className="text-lg font-bold mb-2">Post a job</h4>
-                    <p>It’s free and easy to post a job.</p>
+                    <h4 className="text-lg font-bold ">Post a job</h4>
+                    <p className="text-gray-400">It’s free and easy to post a job.</p>
                 </div>
                 <div className="flex-1">
                 <motion.div
@@ -33,8 +33,8 @@ const SomethingDone = () => {
                     >
                         <img src={icon2} alt="" className="w-16 h-16 mb-2" />
                     </motion.div>
-                    <h4 className="text-lg font-bold mb-2">Choose freelancers</h4>
-                    <p>It’s free and easy to choose freelancers.</p>
+                    <h4 className="text-lg font-bold">Choose freelancers</h4>
+                    <p className="text-gray-400">It’s free and easy to choose freelancers.</p>
                 </div>
                 <div className="flex-1">
                     <motion.div
@@ -45,8 +45,8 @@ const SomethingDone = () => {
                     >
                         <img src={icon3} alt="" className="w-16 h-16 mb-2" />
                     </motion.div>
-                    <h4 className="text-lg font-bold mb-2">Pay safely</h4>
-                    <p>It’s free and easy to pay safely.</p>
+                    <h4 className="text-lg font-bold">Pay safely</h4>
+                    <p className="text-gray-400">It’s free and easy to pay safely.</p>
                 </div>
                 <div className="flex-1">
                 <motion.div
@@ -57,8 +57,8 @@ const SomethingDone = () => {
                     >
                         <img src={icon4} alt="" className="w-16 h-16 mb-2" />
                     </motion.div>
-                    <h4 className="text-lg font-bold mb-2">We’re here to help</h4>
-                    <p>It’s free and easy to contact with us.</p>
+                    <h4 className="text-lg font-bold">We’re here to help</h4>
+                    <p className="text-gray-400">It’s free and easy to contact with us.</p>
                 </div>
             </div>
         </div>
