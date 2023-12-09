@@ -2,7 +2,7 @@
 
 ## Live link
 
-click here for the live link: https://online-marketplace-67d40.web.app/
+click here for the live link: https://quiet-swan-55d97b.netlify.app
 
 
 ## Features and functionalities
